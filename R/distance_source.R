@@ -290,8 +290,10 @@ test_pop_DS <- function(data,
 
   # Compute identification of alertes according to the protocole
   data_pop_DS <- data %>%
-    dplyr::select(enh_libelle_sandre, pop_surface_bassin_versant_amont,
-                  pop_altitude, pop_distance_source) %>%
+    dplyr::select(enh_libelle_sandre,
+                  pop_surface_bassin_versant_amont,
+                  pop_altitude,
+                  pop_distance_source) %>%
     dplyr::filter(is.na(enh_libelle_sandre) == FALSE) %>%
     unique() %>%
     dplyr::group_by(enh_libelle_sandre) %>%
@@ -373,12 +375,6 @@ test_pop_DS <- function(data,
         na = round(
           mean(NA_message == "Valeur manquante") * 100,
           digits = 2),
-        # na.alt = round(
-        #   mean(altDS_message == "Altitude manquante") * 100,
-        #   digits = 2),
-        # na.BV = round(
-        #   mean(BVDS_message == "Surface BV manquante") * 100,
-        #   digits = 2),
         alerte = round(
           mean(DS_type == "alerte") * 100, digits = 2),
         alt.normale = round(
@@ -395,8 +391,6 @@ test_pop_DS <- function(data,
     PopDS_nb <- data_pop_DS %>%
       plyr::summarise(
         na.alt = sum(NA_message == "Valeur manquante"),
-        # na.alt = sum(altDS_message == "Altitude manquante"),
-        # na.BV = sum(BVDS_message == "Surface BV manquante"),
         alerte = sum(DS_type == "alerte"),
         alt.normale = sum(altDS_message == "Altitude conforme"),
         alt.anormale = sum(altDS_message == "Altitude non conforme"),
@@ -410,14 +404,16 @@ test_pop_DS <- function(data,
                            comment.size = 7,
                            colours = c("#BF3111", "#BF3111", "#5AB5BF",
                                        "#BF3111", "#5AB5BF", "#BF3111"),
-                           titre = "Rapport check Surface calculee (%)",
-                           comment = commentaire, size.tab = 7)
+                           titre = "Rapport DS-altitude-SBV (%)",
+                           comment = commentaire,
+                           size.tab = 7)
     table_nb <- make_tab(x = PopDS_nb,
                          comment.size = 7,
                          colours = c("#BF3111", "#BF3111", "#5AB5BF",
                                      "#BF3111", "#5AB5BF", "#BF3111"),
-                         titre = "Rapport check Surface calculee (nb)",
-                         comment = commentaire, size.tab = 7)
+                         titre = "Rapport DS-altitude-SBV (nb)",
+                         comment = commentaire,
+                         size.tab = 7)
   }
 
   # create pdf files

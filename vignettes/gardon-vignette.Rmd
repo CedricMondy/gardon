@@ -53,11 +53,10 @@ data_IDF <- getDataRegion(
 2. Tests à réaliser en priorité
 --------------------
 Certaines variables seront utilisées par la suite pour vérifier d'autres variables.  
-Celles-ci doivent donc être vérifiées en priorité : la largeur de l'opération et la distance   
-à la source.  
-Pour la largeur, plusieurs méthodes sont disponibles (run `?test_ope_largeur` pour plus   
-de détail). Ici nous allons opter pour celle qui identifie les valeurs aberrantes à l'aide de   
-l'IQR criterion en groupant les operations par points de prélèvements aux préalables.
+Celles-ci doivent donc être vérifiées en priorité : la largeur de l'opération et la distance à la source.  
+Pour la largeur, plusieurs méthodes sont disponibles (run `?test_ope_largeur` pour plus de détail).   
+Ici nous allons opter pour celle qui identifie les valeurs aberrantes à l'aide de l'IQR criterion en 
+groupant les operations par points de prélèvements aux préalables.
 
 ```{r Lar_test, message=FALSE, fig.dim=c(7,5)}
 result_Lar <- test_ope_Lar(
@@ -70,13 +69,13 @@ result_Lar <- test_ope_Lar(
 
 ```
 
-Configurer de cette manière la fonction renvoie des figures et mais n'enregistre pas   
-les résultats sous forme de pdf et d'un fichier csv comprenant le détail des alertes.  
+Configurer de cette manière la fonction renvoie des figures et mais n'enregistre pas les résultats sous forme  
+de .pdf et d'un fichier .csv comprenant le détail des alertes.  
   
-En ce qui concerne la distance à la source, deux tests sont disponibles : `test_pop_dist()` qui  
-vérifie la cohérence des valeurs et `test_pop_DS()` qui croisent ces valeurs avec celles de  
-l'altitude et de la surface du bassin versant. Plus précisement, ce dernier vérifie que l'altitude  
-diminue et que la surface du bassin versant augmente bien avec la distance à la source.  
+En ce qui concerne la distance à la source, deux tests sont disponibles : `test_pop_dist()` qui vérifie   
+la cohérence des valeurs et `test_pop_DS()` qui croisent ces valeurs avec celles de l'altitude et de la surface   
+du bassin versant. Plus précisement, ce dernier test vérifie que l'altitude diminue et que la surface du bassin   
+versant augmente bien avec la distance à la source.  
 
 ```{r, message=FALSE, fig.dim=c(7,5), warning=FALSE}
 result_dist <- test_pop_dist(
@@ -99,13 +98,13 @@ result_DS <- test_pop_DS(
 ```
 
 
-3. Exemples des possibilités avec les tests
+3. Exemples des tests disponibles
 --------------------
 
 ### A) Valeurs minimum et maximum
-La première possibilité pour tester la cohérence de valeurs quantitatives est de définir un  
-interval de valeurs à l'extérieur duquel les valeurs sont considérées comme des valeurs aberrantes.  
-Ici on prend l'exemple des valeurs de température extérieure de janvier avec un interval de 4°C à 7°C.
+La première possibilité pour tester la cohérence de valeurs quantitatives est de définir un interval de   
+valeurs à l'extérieur duquel les valeurs sont considérées comme aberrantes.  
+Ici on prend l'exemple des valeurs de température de l'air de janvier avec un interval de 4°C à 7°C.
 
 ```{r, message=FALSE, fig.dim=c(7,5), warning=FALSE}
 result_TempJanv <- test_pop_tempJanv(
@@ -135,14 +134,16 @@ result_profondeur <- test_ope_profondeur(
 
 ```
 
+<b>A noter : </b> dans le cas de la profondeur `test_ope_profondeur()`, la largeur (`test_ope_Lar()`) et   
+des effectifs des espèces (`test_sp_effectif()`), des méthodes sont disponibles afin d'évaluer les valeurs  
+aberrantes avec l'IQR criterion de manière plus fine : en regardant par espèces, par point de prélèvement   
+ou par type de cours d'eau.  
 
-### C) Interval de confiance
-
-### D) Croisement avec d'autres variables
+### C) Croisement avec d'autres variables
 
 Certaines variables sont définis en fonction d'autres et on peut vérifier l'une en la croisant avec une autre.  
 Par exemple, on sait que la longueur de l'opération est définie par la largeur de l'opération.  
-On peut dès lors tracé une tendance et identifier les valeurs aberrantes à partir de celle-ci. Pour cela on va  
+On peut dés lors tracé une tendance et identifier les valeurs aberrantes à partir de celle-ci. Pour cela on va  
 prendre l'exemple de la longueur (`test_ope_longeur()`) en choisissant `method = 4`. 
 
 ```{r, message=FALSE, fig.dim=c(7,5), warning=FALSE}
@@ -155,13 +156,16 @@ result_longueur <- test_ope_Lon(
 
 ```
 
-### E) Résumer des tests
+### D) Résumer des tests
 
 Après avoir réalisé tous les tests souhaités, il est possible de visualiser globalement les résultats des tests :  
-(1) Nombre d'alerte par test, (2) Nombre d'alerte par cours d'eau, et (3) Nombre d'alerte par années. Cette  
-fonction permet également de créer un tableau regrouppant les résultats de l'ensemble des tests réalisés avec  
-deux choix possibles : soit en chargeant les fichiers .csv enregistrés au cours des tests, soit en indiquant les  
-noms des tableaux se trouvant dans l'environnement de travail de R.  
+<b>(1)</b> Nombre d'alerte par test,  
+<b>(2)</b> Nombre d'alerte par cours d'eau,  
+<b>(3)</b> Nombre d'alerte par années.  
+Cette fonction permet également de créer un tableau regrouppant les résultats de l'ensemble des tests   
+réalisés avec  deux choix possibles :   
+<b>(1)</b> soit en chargeant les fichiers .csv enregistrés au cours des tests,  
+<b>(2)</b> soit en indiquant les noms des tableaux se trouvant dans l'environnement de travail de R.  
 Ici on optera plutôt pour la deuxième option.
 
 ```{r, message=FALSE, fig.dim=c(7,5), warning=FALSE}

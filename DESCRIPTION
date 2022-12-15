@@ -1,9 +1,9 @@
 Type: Package
 Package: gardon
-Title: Check quality of fish data
+Title: Check quality of fish data (ASPE database)
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
+Author: Laura Meudec
+Maintainer: <laurameudec@hotmail.fr>
 Description: More about what it does (maybe more than one line) Use four
     spaces when indenting paragraphs within the Description.
 License: What license is it under?

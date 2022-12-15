@@ -172,8 +172,8 @@ join_Testresult <- function(data,
       ggplot2::ggplot() +
       ggplot2::geom_col(aes(x = enh_libelle_sandre,
                             y = nb_alerte, fill = name)) +
-      ggplot2::geom_point(data = ope_cours_eau, aes(x = enh_libelle_sandre,
-                                                    y = nb_ope)) +
+      # ggplot2::geom_point(data = ope_cours_eau, aes(x = enh_libelle_sandre,
+      #                                               y = nb_ope)) +
       ggplot2::scale_fill_manual(values = color_type) +
       ggplot2::ggtitle("Nombre d'operation en alerte par cours eau") +
       ggplot2::labs(x = "Cours eau", y = "Nombre d'alertes",
@@ -199,19 +199,19 @@ join_Testresult <- function(data,
       ggplot2::coord_flip()
     print(g2)
 
-    g3 <- final_report %>%
-      dplyr::mutate(annee = format(ope_jour, format = "%Y")) %>%
-      dplyr::select(ope_id, annee, nb_alerte, name) %>%
-      unique() %>%
-      ggplot2::ggplot() +
-      ggplot2::geom_col(aes(x = as.factor(annee), y = nb_alerte, fill = name)) +
-      ggplot2::geom_point(data = ope_annee, aes(x = as.factor(annee),
-                                                y = nb_ope)) +
-      ggplot2::scale_fill_manual(values = color_type) +
-      ggplot2::ggtitle("Nombre d'operation en alerte par annee") +
-      ggplot2::labs(x = "Annees", y = "Nombre d'alertes", fill = "Types test") +
-      ggplot2::coord_flip()
-    print(g3)
+    # g3 <- final_report %>%
+    #   dplyr::mutate(annee = format(ope_jour, format = "%Y")) %>%
+    #   dplyr::select(ope_id, annee, nb_alerte, name) %>%
+    #   unique() %>%
+    #   ggplot2::ggplot() +
+    #   ggplot2::geom_col(aes(x = as.factor(annee), y = nb_alerte, fill = name)) +
+    #   ggplot2::geom_point(data = ope_annee, aes(x = as.factor(annee),
+    #                                             y = nb_ope)) +
+    #   ggplot2::scale_fill_manual(values = color_type) +
+    #   ggplot2::ggtitle("Nombre d'operation en alerte par annee") +
+    #   ggplot2::labs(x = "Annees", y = "Nombre d'alertes", fill = "Types test") +
+    #   ggplot2::coord_flip()
+    # print(g3)
 
   }
 

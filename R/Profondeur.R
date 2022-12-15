@@ -116,7 +116,8 @@ test_ope_profondeur <- function(data,
 
     # Compute identification of alertes according to the method chosen
     data_profondeur <- data %>%
-      dplyr::select(ope_id, ode_profondeur_moyenne_station,
+      dplyr::select(ope_id,
+                    ode_profondeur_moyenne_station,
                     enh_libelle_sandre) %>%
       unique() %>%
       dplyr::mutate(
@@ -166,16 +167,20 @@ test_ope_profondeur <- function(data,
     if (echelle == "POP") {
       var <- dplyr::quo(pop_id)
       commentaire <- "alerte IQR criterion par points de prelevement"
+      typ_eau <- 0
+      legende_x <- "Point de prélèvement"
     } else if (echelle == "type_cours_eau") {
       var <- dplyr::quo(Type_cours_eau)
       commentaire <- "alerte IQR criterion par type cours d'eau"
+      typ_eau <- c("Type_cours_eau")
+      legende_x <- "Type de cours d'eau"
     } else if (echelle != "POP" | echelle != "type_cours_eau") {
       stop("echelle inconnue : choisir entre POP ou type_cours_eau")
     }
 
     data_profondeur <- data %>%
       dplyr::select(ope_id, ode_profondeur_moyenne_station, pop_id,
-                    enh_libelle_sandre, Type_cours_eau) %>%
+                    enh_libelle_sandre, typ_eau) %>%
       unique() %>%
       dplyr::group_by(!!var) %>%
       dplyr::group_split() %>%
@@ -238,7 +243,7 @@ test_ope_profondeur <- function(data,
                             y = ode_profondeur_moyenne_station)) +
         ggplot2::geom_boxplot(fill = "grey60") +
         ggplot2::geom_point(aes(color = Prof_type)) +
-        ggplot2::labs(x = "Point de prelevement", y = "Profondeur") +
+        ggplot2::labs(x = legende_x, y = "Profondeur") +
         ggplot2::scale_color_manual(values = pal_alerte) +
         ggplot2::coord_flip()
 
@@ -376,6 +381,7 @@ test_ope_profondeur <- function(data,
   }
   return(data_profondeur)
 }
+
 
 # ===========================
 
