@@ -105,7 +105,7 @@ getDataRegion <- function(file.name = NULL,
     stop("station.filter est renseigne alors colname.station.filter
                     doit aussi etre renseigne")
   } else if (is.null(station.filter) == TRUE & package.data == TRUE) {
-    print("chargement des donnees de station depuis le package")
+    print("pas de donnees d'exemple de station.filter dans package")
   } else if (is.null(station.filter) == FALSE & package.data == TRUE) {
     stop("impossible que station.filter soit renseigne et
              package.data = TRUE")
@@ -123,7 +123,7 @@ getDataRegion <- function(file.name = NULL,
     stop("type.ce.IDF est renseigne alors colname.type.ce.sta
            doit aussi etre renseigne")
   } else if (is.null(type.ce.IDF) == TRUE & package.data == TRUE) {
-    print("chargement des donnees de type de cours d'eau depuis le package")
+    print("pas de donnees d'exemple de type.ce dans package")
   } else if (is.null(type.ce.IDF) == FALSE & package.data == TRUE) {
     stop("impossible que type.ce.IDF soit renseigne et
              package.data = TRUE")
@@ -353,7 +353,7 @@ getDataRegion <- function(file.name = NULL,
   # =====================
   if (save == TRUE) {
     base::setwd("C:/Users/laura.meudec/Documents/Laura/Projet/Data/")
-    save(IDF_new, file = "IDF_new_2007.RData")
+    save(IDF_new, file = "IDF_package.RData")
   }
   return(IDF_new)
 }

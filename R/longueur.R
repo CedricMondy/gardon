@@ -158,7 +158,7 @@ test_ope_Lon <- function(data,
         ggplot2::ggplot(aes(x = factor(0), y = ecart_Lon)) +
         ggplot2::geom_boxplot(fill = "grey60") +
         ggplot2::geom_point() +
-        ggplot2::labs(x = "", y = "Longueur opération") +
+        ggplot2::labs(x = "", y = "Valeurs des ecarts de longueur") +
         ggplot2::ggtitle("Ecart à l'intervalle de confiance")
     }
 

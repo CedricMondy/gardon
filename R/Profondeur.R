@@ -252,8 +252,8 @@ test_ope_profondeur <- function(data,
                             y = ecart_prof)) +
         ggplot2::geom_boxplot(fill = "grey60") +
         ggplot2::geom_point() +
-        ggplot2::labs(x = "", y = "Profondeur") +
-        ggplot2::ggtitle("Boxplot des écarts au max/min des alertes")
+        ggplot2::labs(x = "", y = "Valeurs des ecarts de profondeur") +
+        ggplot2::ggtitle("Boxplot des ecarts au max/min des alertes")
     }
 
 

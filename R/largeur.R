@@ -275,7 +275,7 @@ test_ope_Lar <- function(data,
                             y = ecart_Lar)) +
         ggplot2::geom_boxplot(fill = "grey60") +
         ggplot2::geom_point() +
-        ggplot2::labs(x = "", y = "Largeur lame eau") +
+        ggplot2::labs(x = "", y = "Valeurs des ecarts de largeur") +
         ggplot2::ggtitle("Boxplot des écarts au max/min des alertes")
 
       commentaire <- "alerte IQR criterion par points de prelevement"
